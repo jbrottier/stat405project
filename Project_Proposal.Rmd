@@ -5,10 +5,32 @@ date: "2025-03-18"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+**Description of the Data**
+The NYC taxi dataset describes urban transportation trends, organized by year, month, and transportation type. 
 
-```{r}
+Transportation Types Include:
+- Yellow Taxis
+- Green (Borough) Taxis
+- Uber
+- Lyft
+- Via
+- Juno
 
-```
+Important Variables for Exploration Include:
+- VendorID (Type of Transportation)
+- passenger_count (Amount of Passengers)
+- trip_distance (Trip Distance)
+- PULocationID (Pick-Up Location)
+- DOLocationID (Drop-Off Location)
+- fare_amount (Trip Cost)
+- tip_amount (Tip Amount)
+- tpep_pickup_datetime (Pick-Up Time)
+- tpep_dropoff_datetime (Drop-Off Time) 
+
+**Statistical Methods and Computational Steps**
+
+**Code to Read the Data**
+
+**Link to GitHub Repository**
+      
+      
