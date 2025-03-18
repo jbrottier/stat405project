@@ -1,7 +1,5 @@
 ---
 title: "Project Proposal"
-author: "Jake Rottier"
-date: "2025-03-18"
 output: html_document
 ---
 
@@ -28,9 +26,12 @@ Important Variables for Exploration Include:
 - tpep_dropoff_datetime (Drop-Off Time) 
 
 **Statistical Methods and Computational Steps**
+One question that we plan to address is how fares change depending on factors including time of day, location, and type of transportation.
+Additionally, we would like to analyze these trends across different years and periods, including holidays such as New Years Eve.
+To do this, ...
 
 **Code to Read the Data**
 
 **Link to GitHub Repository**
-      
+https://github.com/jbrottier/stat405project      
       
