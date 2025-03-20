@@ -7,6 +7,7 @@ output: html_document
 The NYC taxi dataset describes urban transportation trends, organized by year, month, and transportation type. 
 
 Transportation Types Include:
+
 - Yellow Taxis
 - Green (Borough) Taxis
 - Uber
@@ -15,6 +16,7 @@ Transportation Types Include:
 - Juno
 
 Important Variables for Exploration Include:
+
 - VendorID (Type of Transportation)
 - passenger_count (Amount of Passengers)
 - trip_distance (Trip Distance)
@@ -26,12 +28,17 @@ Important Variables for Exploration Include:
 - tpep_dropoff_datetime (Drop-Off Time) 
 
 **Statistical Methods and Computational Steps**
+
 One question that we plan to address is how fares change depending on factors including time of day, location, and type of transportation.
+
 Additionally, we would like to analyze these trends across different years and periods, including holidays such as New Years Eve.
+
 Furthermore, we plan to examine the differences between taxis and for-hire transportation including Uber and Lyft. 
 
 To address differences in fares, we plan to create a linear regression model to predict fares depending on certain factors.
+
 To analyze the differences in time periods, we plan to use a t-test to determine whether there is a difference in mean rates.
+
 Finally, to examine the differences between transportation methods, we plan to use an ANOVA test to compare between more than two groups.
 
 EXPAND ON COMPUTATIONAL STEPS HERE
