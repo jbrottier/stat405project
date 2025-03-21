@@ -45,7 +45,48 @@ EXPAND ON COMPUTATIONAL STEPS HERE
 
 **Code to Read the Data**
 
-INSERT SAMPLE CODE TO READ THE DATA HERE
+***.py file to read Parquet:***
+
+```
+import pandas as pd
+import sys
+
+def read_parquet(file_path):
+  try:
+    df = pd.read_parquet(file_path)
+    print(f"Reading {file_path}...")
+    print(df.head())
+  except Exception as e:
+    print(f"Error reading {file_path}: {e}")
+
+if __name__ == "__main__":
+    file_path = sys.argv[1]
+    read_parquet(file_path)
+```
+***.sh file to process Parquet files:***
+```
+#!/bin/bash                                                                                                                                                                                          
+
+BASE_DIR="./nyc-taxi-dataset"
+
+for year in {2009..2023}; do
+    YEAR_DIR="${BASE_DIR}/${year}"
+
+    if [ -d "$YEAR_DIR" ]; then
+        echo "Processing year: $year"
+
+        for subfolder in $(ls "$YEAR_DIR"); do
+            SUBFOLDER_PATH="${YEAR_DIR}/${subfolder}"
+
+            if [ -d "$SUBFOLDER_PATH" ]; then
+                for file in $(find "$SUBFOLDER_PATH" -name "*.parquet"); do
+                    python3 read_parquet.py "$file"
+                done
+            fi
+        done
+    fi
+done
+```
 
 **Link to GitHub Repository**
 https://github.com/jbrottier/stat405project      

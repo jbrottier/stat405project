@@ -391,9 +391,44 @@ to determine whether there is a difference in mean rates.</p>
 <p>Finally, to examine the differences between transportation methods,
 we plan to use an ANOVA test to compare between more than two
 groups.</p>
-<p>EXPAND ON COMPUTATIONAL STEPS HERE</p>
 <p><strong>Code to Read the Data</strong></p>
-<p>INSERT SAMPLE CODE TO READ THE DATA HERE</p>
+<p><strong><em>.py file to read Parquet:</em></strong></p>
+<pre><code>import pandas as pd
+import sys
+
+def read_parquet(file_path):
+  try:
+    df = pd.read_parquet(file_path)
+    print(f&quot;Reading {file_path}...&quot;)
+    print(df.head())
+  except Exception as e:
+    print(f&quot;Error reading {file_path}: {e}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    file_path = sys.argv[1]
+    read_parquet(file_path)</code></pre>
+<p><strong><em>.sh file to process Parquet files:</em></strong></p>
+<pre><code>#!/bin/bash                                                                                                                                                                                          
+
+BASE_DIR=&quot;./nyc-taxi-dataset&quot;
+
+for year in {2009..2023}; do
+    YEAR_DIR=&quot;${BASE_DIR}/${year}&quot;
+
+    if [ -d &quot;$YEAR_DIR&quot; ]; then
+        echo &quot;Processing year: $year&quot;
+
+        for subfolder in $(ls &quot;$YEAR_DIR&quot;); do
+            SUBFOLDER_PATH=&quot;${YEAR_DIR}/${subfolder}&quot;
+
+            if [ -d &quot;$SUBFOLDER_PATH&quot; ]; then
+                for file in $(find &quot;$SUBFOLDER_PATH&quot; -name &quot;*.parquet&quot;); do
+                    python3 read_parquet.py &quot;$file&quot;
+                done
+            fi
+        done
+    fi
+done</code></pre>
 <p><strong>Link to GitHub Repository</strong> <a href="https://github.com/jbrottier/stat405project" class="uri">https://github.com/jbrottier/stat405project</a></p>
 
 
