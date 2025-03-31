@@ -1,9 +1,17 @@
 #!/bin/bash
 
-# Download the dataset zip file **THIS MIGHT NOT WORK BECAUZE OF AUTHENTICATION AND API KEYS**
-curl -L -o ~/Downloads/nyc-taxi-dataset.zip\
+# Get the current directory to download the data and create data directory
+dir="$1"
+mkdir -p "$dir/data"
+
+# Define zip file and output folder for python script
+zip="$dir/data/nyc-taxi-dataset.zip"
+output="$dir/data"
+
+# Download the dataset zip file **THIS MIGHT NOT WORK BECAUSE OF AUTHENTICATION AND API KEYS**
+curl -L -o "$zip" \
   https://www.kaggle.com/api/v1/datasets/download/microize/nyc-taxi-dataset
 
 # Unzip the zip file to create a directory for analysis
-# INSERT PYTHON SCRIPT CALL HERE -- Need to define zip_file path and output_file path
-python unzip.py zip_file output_file
+python unzip.py "$zip" "$output"
+

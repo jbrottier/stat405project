@@ -1,4 +1,9 @@
 #!/bin/bash
 
-# This shell script will call the python function to read and combine the data for each of the years that data is available
-# This will be implemented in one of the upcoming updates
+# Setting the year based on the specified array
+year=$(($SLURM_ARRAY_TASK_ID + 2008))
+
+echo "Processing year $year..."
+
+# Procoess the specified year using the created python script
+python process_dataset2.py $1 $year
