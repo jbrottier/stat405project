@@ -1,18 +1,6 @@
-# FILE NOTES
-# This python script will have to be modified
-# The unzipping should happen outside of this script since we do not want it to happen more than once
-# Additionally, the python script should take a year as an argument so that they can be processed in parallel by jobArray.sh
-
 import pandas as pd
 import sys
-import zipfile
 from pathlib import Path
-
-# This function unzips the data into directories and sub-directories to be processed
-def unzip(zf, output):
-    with zipfile.ZipFile(zf, 'r') as zip_ref:
-        zip_ref.extractall(output)
-    print(f'Unzipped {zf}')
 
 # This function reads all the parquet files in the given file_paths and combines them into a single dataframe
 def read_data(file_paths):
@@ -24,7 +12,7 @@ def read_data(file_paths):
             dfs.append(df)
         except Exception as e:
             print(f"Error reading {fp}: {e}")
-    # Combine all dataframes together and returns an empty df if there are errors or no data
+    # Combine all dataframes together and return an empty df if there are errors or no data
     if len(dfs) != 0:
         combined_df = pd.concat(dfs, ignore_index=True)
         return combined_df
@@ -49,28 +37,25 @@ def process_year(yf, subfolder, out):
                 print(f"Saved combined data to {out}")
             else:
                 print(f"No data to combine for {subfolder} in {yf}")
-                
-# This function puts everything together and processes the entire zip folder into output CSV files for each transportation mode
-def process_dataset(zf, output_folder):
-    # Unzipping the zip file
-    unzip(zf, output_folder)
 
+# This function processes the data for a specific year
+def process_dataset(output_folder, year):
     # Defining transportation methods
     subfolders = ["for_hire_vehicle", "green_taxi", "high_volume_for_hire_vehicle", "yellow_taxi"]
     
-    # Loop through each year folder (2009 to 2023)
-    for year in range(2009, 2024):
-        yf = output_folder / str(year)
-        for sf in subfolders:
-            # Define the output file for each subfolder
-            output_file = output_folder / f"{sf}_combined_data.csv"
-            process_year(yf, sf, output_file)
+    yf = output_folder / str(year)
+    
+    for sf in subfolders:
+        # Define the output file for each subfolder
+        output_file = output_folder / f"{sf}_combined_data_{year}.csv"
+        process_year(yf, sf, output_file)
 
 # Getting the arguments for the script when it is run
 if __name__ == "__main__":
-    # Gets the zip file path (dataset.zip)
-    zip_file = sys.argv[1]
-    # Folder to unzip the data to
-    output_folder = Path(sys.argv[2])
-    # Processes all of the data
-    process_dataset(zip_file, output_folder)
+    # Folder to unzip the data to (this is the output folder where data was unzipped)
+    output_folder = Path(sys.argv[1])
+    # Year to process (from 2009 to 2023)
+    year = int(sys.argv[2])
+    
+    # Processes the data for the specified year
+    process_dataset(output_folder, year)
