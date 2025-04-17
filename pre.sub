@@ -1,0 +1,21 @@
+executable = pre.sh
+
+transfer_input_files = pre.sh, python_kaggle.sif
+
+container_image = python_kaggle.sif
+
+output = logs/pre.out
+error  = logs/pre.err
+log    = logs/pre.log
+
+request_cpus = 2
+request_memory = 256GB
+request_disk = 70GB
+
++WantFlocking = true
++WantWholeNode = true
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+queue

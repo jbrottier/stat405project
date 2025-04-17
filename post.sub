@@ -1,0 +1,16 @@
+executable = post.sh
+
+transfer_input_files = post.sh
+
+output = logs/post.out
+error = logs/post.err
+log = logs/post.log
+
+request_cpus = 1
+request_memory = 512MB
+request_disk = 1GB
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+queue

@@ -1,0 +1,10 @@
+Bootstrap: docker
+From: python:3.11
+
+%post
+    apt-get update && apt-get install -y curl unzip
+    python3 -m pip install --upgrade pip
+    python3 -m pip install numpy pandas scikit-learn kaggle pyarrow
+
+%environment
+    export LC_ALL=C
