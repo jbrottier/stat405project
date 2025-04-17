@@ -1,5 +1,8 @@
 executable = post.sh
 
+# Set Container Image
+container_image = python_ds.sif
+
 transfer_input_files = post.sh
 
 output = logs/post.out
