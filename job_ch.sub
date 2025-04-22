@@ -1,0 +1,24 @@
+executable = jobArray_ch.sh
+arguments = $(year) /staging/groups/stat_dscp/my_group03/Dataset
+
+# Set Container Image
+container_image = python_kaggle.sif
+
+# Transfer necessary files
+transfer_input_files = jobArray_ch.sh, process_dataset.py, python_kaggle.sif
+
+output = logs/job_$(Process).out
+error  = logs/job_$(Process).err
+log = logs/job_$(Process).log
+
+request_cpus = 1
+request_memory = 128GB
+request_disk = 20GB
+
++WantWholeNode = true
++WantFlocking = true
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+queue year from years.txt

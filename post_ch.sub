@@ -1,0 +1,20 @@
+executable = post_ch.sh
+
+#Set Container Image
+container_image = python_ds.sif
+
+transfer_input_files = post_ch.sh
+
+output = logs/post_ch.out
+error  = logs/post_ch.err
+log    = logs/post_ch.log
+
+request_cpus = 1
+request_memory = 64GB
+request_disk = 64GB
+
+should_transfer_files = YES
+when_to_transfer_files = 0N_EXIT
+initialdir = /staging/groups/stat_dscp/my_group03/stat405project
+
+queue
